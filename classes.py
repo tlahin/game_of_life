@@ -18,13 +18,3 @@ class background():
 
 		self.surface = pygame.Surface((width, height))
 		self.colour = self.surface.fill(pygame.Color(colour))
-
-class game():
-
-	def __init__(self, size, debug):
-
-		self.row = size
-		self.map_size = size * size
-		self.generation = 1
-		self.arena = [0x01] * self.map_size
-		self.debug = debug
