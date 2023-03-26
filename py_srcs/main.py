@@ -75,11 +75,11 @@ while running:
 	while row < size:
 		line = return_next_line(0)
 		col = 0
-		while col < len(line):
+		while col < len(line) - 1:
 			if line[col] == "X":
-				pygame.draw.rect(window_data.window, "Black", pygame.Rect(col + cell_size, row + cell_size, cell_size, cell_size))
+				pygame.draw.rect(window_data.window, "Black", pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size))
 			else:
-				pygame.draw.rect(window_data.window, "White", pygame.Rect(col + cell_size, row + cell_size, cell_size, cell_size))
+				pygame.draw.rect(window_data.window, "White", pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size))
 			col += 1
 		row += 1
 	return_next_line(0)
