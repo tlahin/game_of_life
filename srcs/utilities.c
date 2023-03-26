@@ -3,8 +3,8 @@
 
 void	print_generation(t_game *game)
 {
-	ft_printf("row %d\n", SIZE);
-	ft_printf("gen %d\n", game->round);
+	ft_printf("size %d\n", SIZE);
+	ft_printf("gene %d\n", game->round);
 	int x = 0;
 	while (x < MAP_SIZE)
 	{

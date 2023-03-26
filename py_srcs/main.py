@@ -30,6 +30,13 @@ def pause():
 					return False
 	return True
 
+def return_next_line(x):
+
+	for _ in range(x):
+		sys.stdin.readline()
+	str = sys.stdin.readline()
+	return str
+
 running = True
 
 while running:
@@ -39,9 +46,15 @@ while running:
 			running = False
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_SPACE:
+				print("Pause")
 				pause()
 				print("Continue")
 			if event.key == pygame.K_ESCAPE:
 				running = False
 
-	
+	size = return_next_line(0)
+	size = int(size[5:len(size) - 1])
+	generation = return_next_line(0)
+	generation = int(generation[5:len(generation) - 1])
+	print(size, generation)
+	break

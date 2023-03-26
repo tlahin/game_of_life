@@ -2,7 +2,7 @@
 #ifndef GOL_H
 # define GOL_H
 
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 
 # define OK 1
 # define KO -1
