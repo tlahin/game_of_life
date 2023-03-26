@@ -52,9 +52,36 @@ while running:
 			if event.key == pygame.K_ESCAPE:
 				running = False
 
+
+	pygame.display.flip()
+
 	size = return_next_line(0)
-	size = int(size[5:len(size) - 1])
+	print(size)
+	size = int(size[5:(len(size) - 1)])
+	
 	generation = return_next_line(0)
 	generation = int(generation[5:len(generation) - 1])
-	print(size, generation)
-	break
+	
+	cell_size = int(window_data.width / size)
+
+	map_size = size * size
+
+	print(size)
+	print(generation)
+	print(cell_size)
+	print(map_size)
+
+	row = 0
+	while row < size:
+		line = return_next_line(0)
+		col = 0
+		while col < len(line):
+			if line[col] == "X":
+				pygame.draw.rect(window_data.window, "Black", pygame.Rect(col + cell_size, row + cell_size, cell_size, cell_size))
+			else:
+				pygame.draw.rect(window_data.window, "White", pygame.Rect(col + cell_size, row + cell_size, cell_size, cell_size))
+			col += 1
+		row += 1
+	return_next_line(0)
+
+	#break
