@@ -2,7 +2,8 @@
 #ifndef GOL_H
 # define GOL_H
 
-# include "../libft/includes/libft.h"
+# include "../libft/libft.h"
+# include "../libft/get_next_line.h"
 
 # define OK 1
 # define KO -1
@@ -25,10 +26,11 @@ struct s_game
 };
 
 int		main(int ac, char **av);
-void	init_gol(t_game *game, int ac, char **av);
+void	init_gol(t_game *game, char **av);
 void	evolve(t_game *game);
 
 //utilities
 void	print_generation(t_game *game);
+void	print_usage(void);
 
 #endif

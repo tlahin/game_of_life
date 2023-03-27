@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = game
 
 SRCS_DIR = srcs/
 SRCS = main utilities init gol

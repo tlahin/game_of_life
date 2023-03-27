@@ -1,6 +1,11 @@
 
 #include "../includes/gol.h"
 
+void	print_usage(void)
+{
+	ft_printf("\nusage:\n\t./game [seed.txt]\n\n");
+}
+
 void	print_generation(t_game *game)
 {
 	ft_printf("size %d\n", SIZE);
