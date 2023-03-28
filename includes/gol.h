@@ -4,6 +4,7 @@
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include <fcntl.h>
 
 # define OK 1
 # define KO -1

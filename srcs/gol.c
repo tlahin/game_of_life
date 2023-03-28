@@ -71,8 +71,8 @@ void	evolve(t_game *game)
 		}
 		index++;
 	}
-	print_generation(game);
+	//print_generation(game);
 	game->round++;
-	if (game->round >= 1000)
+	if (game->round >= 2)
 		game->alive = false;
 }
