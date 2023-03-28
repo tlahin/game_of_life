@@ -2,8 +2,8 @@
 #ifndef GOL_H
 # define GOL_H
 
-# include "../libft/libft.h"
-# include "../libft/get_next_line.h"
+# include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line.h"
 # include <fcntl.h>
 
 # define OK 1
