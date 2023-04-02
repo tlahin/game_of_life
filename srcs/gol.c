@@ -1,78 +1,81 @@
 
 #include "../includes/gol.h"
 
-static bool	is_alive(t_game *game, uint32_t index)
+void	set_friends(t_game *game, uint32_t i, uint32_t alive)
 {
-	return (game->map[index] & 0x01);
-}
 
-static void	set_neighbours(t_game *game, uint32_t index, bool kill)
-{
-	int north, east, south, west;
+	int32_t north, east, south, west;
 
-	north = (index < SIZE) ? (SIZE * (SIZE - 1)) : -SIZE;
-	east = (index % SIZE == SIZE - 1) ? -(SIZE - 1) : 1;
-	south = (index / SIZE == SIZE - 1) ? -(SIZE * (SIZE - 1)) : SIZE;
-	west = (index % SIZE == 0) ? SIZE - 1 : - 1;
+	north = (i < SIZE) ? (SIZE * (SIZE - 1)) : -SIZE;
+	east = (i % SIZE == SIZE - 1) ? -(SIZE - 1) : 1;
+	south = (i / SIZE == SIZE - 1) ? -(SIZE * (SIZE - 1)) : SIZE;
+	west = (i % SIZE == 0) ? SIZE - 1 : - 1;
 
-	if (kill)
+	if (!alive)
 	{
-		game->map[index + north] -= 0x02;
-		game->map[index + east] -= 0x02;
-		game->map[index + south] -= 0x02;
-		game->map[index + west] -= 0x02;
-		game->map[index + (north + east)] -= 0x02;
-		game->map[index + (south + east)] -= 0x02;
-		game->map[index + (south + west)] -= 0x02;
-		game->map[index + (north + west)] -= 0x02;
+		game->map[i + north] -= 0x02;
+		game->map[i + east] -= 0x02;
+		game->map[i + south] -= 0x02;
+		game->map[i + west] -= 0x02;
+		game->map[i + (north + east)] -= 0x02;
+		game->map[i + (south + east)] -= 0x02;
+		game->map[i + (south + west)] -= 0x02;
+		game->map[i + (north + west)] -= 0x02;
 	}
 	else
 	{
-		game->map[index + north] += 0x02;
-		game->map[index + east] += 0x02;
-		game->map[index + south] += 0x02;
-		game->map[index + west] += 0x02;
-		game->map[index + (north + east)] += 0x02;
-		game->map[index + (south + east)] += 0x02;
-		game->map[index + (south + west)] += 0x02;
-		game->map[index + (north + west)] += 0x02;
+		game->map[i + north] += 0x02;
+		game->map[i + east] += 0x02;
+		game->map[i + south] += 0x02;
+		game->map[i + west] += 0x02;
+		game->map[i + (north + east)] += 0x02;
+		game->map[i + (south + east)] += 0x02;
+		game->map[i + (south + west)] += 0x02;
+		game->map[i + (north + west)] += 0x02;
 	}
 }
 
-static void toggle_cell(t_game *game, uint32_t index)
+void	toggle_cell(t_game *game, uint32_t i)
 {
-	bool	kill = is_alive(game, index);
-	game->map[index] ^= 0x01;
-	set_neighbours(game, index, kill);
+	uint32_t alive = is_alive(game, i);
+	if (alive)
+		game->map[i] = 0x01;
+	else
+		game->map[i] = 0x00;
+	set_friends(game, i, alive);
 }
 
-void	evolve(t_game *game)
+uint32_t	is_alive(t_game *game, uint32_t i)
 {
-	uint32_t	index = 0;
-	uint8_t		map_copy[MAP_SIZE];
-	uint32_t	neighbours;
+	return (game->map[i] & 0x01);
+}
 
-	ft_memcpy(map_copy, game->map, MAP_SIZE);
-	while (index < MAP_SIZE)
+void	gol(t_game *game)
+{
+	uint32_t	i;
+	uint32_t	friends;
+
+	i = 0;
+	while (game->alive == true)
 	{
-		if (map_copy[index])
+		while (i < MAP_SIZE)
 		{
-			neighbours = map_copy[index] >> 1;
-			if (map_copy[index] & 0x01)
+			friends = game->map[i] >> 1;
+			if (is_alive(game, i))
 			{
-				if (neighbours < 2 || neighbours > 3)
-					toggle_cell(game, index);
+				if (friends < 2 || friends > 3)
+					toggle_cell(game, i);
 			}
 			else
 			{
-				if (neighbours == 3)
-					toggle_cell(game, index);
+				if (friends == 3)
+					toggle_cell(game, i);
 			}
+			i++;
 		}
-		index++;
+		game->round++;
+		print_generation(game->map, game->round);
+		if (game->round > 2)
+			game->alive = false;
 	}
-	//print_generation(game);
-	game->round++;
-	if (game->round >= 2)
-		game->alive = false;
 }

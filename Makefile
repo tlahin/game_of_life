@@ -1,7 +1,7 @@
 NAME = game
 
 SRCS_DIR = srcs/
-SRCS = main utilities init gol
+SRCS = main utilities gol
 
 OBJS_DIR = objs/
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS)))

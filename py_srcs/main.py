@@ -76,7 +76,7 @@ while running:
 		line = return_next_line(0)
 		col = 0
 		while col < len(line) - 1:
-			if line[col] == "X":
+			if line[col] == "x":
 				pygame.draw.rect(window_data.window, "Black", pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size))
 			else:
 				pygame.draw.rect(window_data.window, "White", pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size))
