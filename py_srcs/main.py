@@ -1,6 +1,7 @@
 
 import pygame
 import sys
+import time
 
 import classes
 
@@ -56,7 +57,6 @@ while running:
 	pygame.display.flip()
 
 	size = return_next_line(0)
-	print(size)
 	size = int(size[5:(len(size) - 1)])
 	
 	generation = return_next_line(0)
@@ -65,11 +65,6 @@ while running:
 	cell_size = int(window_data.width / size)
 
 	map_size = size * size
-
-	print(size)
-	print(generation)
-	print(cell_size)
-	print(map_size)
 
 	row = 0
 	while row < size:
@@ -82,6 +77,7 @@ while running:
 				pygame.draw.rect(window_data.window, "White", pygame.Rect(col * cell_size, row * cell_size, cell_size, cell_size))
 			col += 1
 		row += 1
+	
 	return_next_line(0)
 
 	#break

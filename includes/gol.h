@@ -7,24 +7,15 @@
 # include <fcntl.h>
 # include <time.h>
 
-# define SIZE 20
+# define SIZE 200
 # define MAP_SIZE SIZE * SIZE
 
-typedef struct s_game t_game;
-
-struct s_game
-{
-	uint8_t		map[MAP_SIZE];
-	uint32_t	round;
-	bool		alive;
-};
 
 int			main(void);
-void		print_generation(uint8_t *map, uint32_t round);
-void		init_game(t_game *game);
-void		gol(t_game *game);
+void		init_game(uint8_t *map);
+void		print_generation(uint8_t *map, uint32_t generation);
+void		game(uint8_t *map);
+void		evolve(uint8_t *map);
+uint8_t		calculate_friends(uint8_t *map, uint32_t i);
 
-uint32_t	is_alive(t_game *game, uint32_t i);
-void		toggle_cell(t_game *game, uint32_t i);
-void		set_friends(t_game *game, uint32_t i, uint32_t alive);
 #endif

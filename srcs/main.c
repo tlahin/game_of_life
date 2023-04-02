@@ -3,9 +3,11 @@
 
 int	main(void)
 {
-	t_game game;
+	uint8_t *map;
 
-	init_game(&game);
-	gol(&game);
+	map = (uint8_t *)malloc(sizeof(uint8_t) * MAP_SIZE + 1);
+	map[MAP_SIZE] = '\0';
+	init_game(map);
+	game(map);
 	return (1);
 }

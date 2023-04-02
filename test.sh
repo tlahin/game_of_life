@@ -6,4 +6,4 @@ BLUE='\033[0;34m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
-./a.out | python3 ./py_srcs/main.py
+./game | python3 ./py_srcs/main.py
