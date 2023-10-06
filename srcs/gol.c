@@ -1,5 +1,5 @@
 
-#include "../includes/gol.h"
+#include "gol.h"
 
 uint8_t	calculate_friends(uint8_t *map, uint32_t i)
 {

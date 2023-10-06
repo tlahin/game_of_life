@@ -1,5 +1,5 @@
 
-#include "../includes/gol.h"
+#include "gol.h"
 
 void	init_game(uint8_t *map)
 {

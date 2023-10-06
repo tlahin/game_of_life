@@ -1,5 +1,5 @@
 
-#include "../includes/gol.h"
+#include "gol.h"
 
 int	main(void)
 {

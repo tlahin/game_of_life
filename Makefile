@@ -41,8 +41,7 @@ clean:
 fclean: clean
 	@echo ${RED}"Removing executables...${RESET}"
 	@make fclean -C libft/
-	@/bin/rm -f $(NAME)
-	@/bin/rm -f a.out
+	@rm -f $(NAME)
 
 re: fclean all
 
